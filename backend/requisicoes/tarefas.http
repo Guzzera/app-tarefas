@@ -1,0 +1,29 @@
+@api = http://localhost:3000/tarefas
+
+GET {{api}}
+
+###
+GET {{api}}/1
+
+###
+GET {{api}}/count
+
+###
+POST {{api}}
+content-type: application/json
+
+{
+    "titulo": "terceira tarefa",
+    "descricao": "apenas uma"
+}
+
+###
+DELETE {{api}}/8
+
+###
+PUT {{api}}/6
+content-type: application/json
+
+{
+    "descricao": "Preciso almoçar"
+}
