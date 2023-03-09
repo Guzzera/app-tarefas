@@ -15,12 +15,6 @@ export const getTarefa = async (req, ret) => {
     ret.json(rows[0]);
 };
 
-export const getTarefaCount = async (req, ret) => {
-    const conexao = await conectar();
-    const [rows] = await conexao.query("SELECT COUNT(*) FROM tarefas_bd");
-    ret.json(rows[0]["COUNT (*)"]);
-};
-
 export const saveTarefa = async (req, ret) => {
     const conexao = await conectar();
     const [resultado] = await conexao.query("INSERT INTO tarefas_bd(titulo, descricao) VALUES (?,?)",[
@@ -43,9 +37,15 @@ export const deleteTarefa = async (req, ret) => {
 
 export const updateTarefa = async (req, ret) => {
     const conexao = await conectar();
-    await conexao.query("UPDATE tarefas_bd SET ? WHERE id = ?", [
+    await conexao.query("UPDATE tarefas_bd SET ? WHERE id =?", [
         req.body,
         req.params.id
     ]);
     ret.sendStatus(204)
+};
+
+export const getTarefasCount = async (req, ret) => {
+  const conexao = await conectar();
+  const [rows] = await conexao.execute("SELECT COUNT(*) FROM tarefas_bd");
+  ret.json(rows[0]["COUNT(*)"]);
 };

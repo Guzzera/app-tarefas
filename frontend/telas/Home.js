@@ -1,27 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { getTarefas } from '../api';
+import React from 'react';
 import ListaTarefa from '../componentes/ListaTarefa';
 import Layout from '../componentes/Layout';
 
 
-const Home = () => {
-
-    const [ tarefas, setTarefas ] = useState([]);
-
-    const carregaTarefas = async () => {
-      const dados = await getTarefas();
-      setTarefas(dados)
-    }
-
-    useEffect(() => {
-      carregaTarefas();
-    }, [])
-
-  return (
-    <Layout>
-     <ListaTarefa tarefas={tarefas}/>
-    </Layout>
-  )
-}
+const Home = () => (
+  <Layout>
+   <ListaTarefa/>
+  </Layout>
+);
 
 export default Home
